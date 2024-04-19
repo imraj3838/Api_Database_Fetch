@@ -17,7 +17,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findById(Long id);
 
     // 2nd method i have to work on is addNewProduct
-//    Product AddnewProduct(Product product);
+    // Product AddnewProduct(Product product);
+
+
 
 List<Product> findByTitle(String title);
 List<Product> deleteByTitle(String title);

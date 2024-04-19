@@ -19,11 +19,6 @@ public class ProductServiceUse implements ProductService {
         return List.of();
     }
 
-//    @Override
-//    public Product getProductById(int id) {
-//        return null;
-//    }
-
     @Override
     public Optional<Product> getProductById(long id) { // This is done by naman bhalla sir
          Optional<Product> producto = productRepository.findById(id);
@@ -38,7 +33,8 @@ public class ProductServiceUse implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
-        return null;
+        Product p = productRepository.save(product);
+        return p;
     }
 
     @Override
