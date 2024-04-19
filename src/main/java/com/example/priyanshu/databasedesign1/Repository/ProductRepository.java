@@ -11,9 +11,14 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
-    Optional<Product> findById(Long id);
+    //1st Method done by me first later i gone through naman bhalla sir
     // here the method might be return null so we can make it Optional as above parameter
     //  Product findById(long id);
+    Optional<Product> findById(Long id);
+
+    // 2nd method i have to work on is addNewProduct
+//    Product AddnewProduct(Product product);
+
 List<Product> findByTitle(String title);
 List<Product> deleteByTitle(String title);
 }

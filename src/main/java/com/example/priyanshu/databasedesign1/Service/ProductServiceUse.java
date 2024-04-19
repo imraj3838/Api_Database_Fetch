@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceUse implements ProductService {
@@ -18,9 +19,16 @@ public class ProductServiceUse implements ProductService {
         return List.of();
     }
 
+//    @Override
+//    public Product getProductById(int id) {
+//        return null;
+//    }
+
     @Override
-    public Product getProductById(int id) { // This is done by naman bhalla sir
-         return productRepository.findById(id);
+    public Optional<Product> getProductById(long id) { // This is done by naman bhalla sir
+         Optional<Product> producto = productRepository.findById(id);
+         Product p = producto.get();
+         return Optional.of(p);
     }
 
     @Override
