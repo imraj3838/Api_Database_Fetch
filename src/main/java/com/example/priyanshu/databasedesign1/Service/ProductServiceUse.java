@@ -37,9 +37,25 @@ public class ProductServiceUse implements ProductService {
         return p;
     }
 
+
     @Override
     public Product updateProduct(Long id, Product product) {  // This is done by naman bhalla sir
-        return null;
+        Optional<Product> producto = productRepository.findById(id);
+        if(producto.isEmpty()) {
+            throw new RuntimeException();
+        }
+        Product saveProduct = producto.get();
+
+        if(product.getTitle()!=null){
+            saveProduct.setTitle(product.getTitle());
+        }
+        if(product.getDescription()!=null){
+            saveProduct.setDescription(product.getDescription());
+        }
+        if(product.getPrice()!=null){
+            saveProduct.setPrice(product.getPrice());
+        }
+        return saveProduct;
     }
 
     @Override
