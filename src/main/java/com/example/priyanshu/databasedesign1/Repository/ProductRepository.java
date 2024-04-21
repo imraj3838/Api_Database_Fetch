@@ -19,7 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // 2nd method i have to work on is addNewProduct
     // Product AddnewProduct(Product product);
 
-
+ Boolean deleteByid(Long id);
 
 List<Product> findByTitle(String title);
 List<Product> deleteByTitle(String title);

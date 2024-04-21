@@ -1,5 +1,6 @@
 package com.example.priyanshu.databasedesign1.Controller;
 
+import java.util.*;
 import com.example.priyanshu.databasedesign1.Models.Product;
 import com.example.priyanshu.databasedesign1.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-//    @Autowired
-//    public ProductController(ProductService productService) {
-//        this.productService = productService;
-//    }
     @GetMapping("/{id}")
     Optional<Product> getProductById( @PathVariable("id") long id) {
         Optional<Product> productDTO = productService.getProductById(id);
@@ -36,5 +33,14 @@ public class ProductController {
         return productService.updateProduct(id,product);
     }
 
+    @GetMapping("/getall")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
 
+    @DeleteMapping("/{id}")
+    public boolean deleteProduct( @PathVariable("id") long id) {
+       Boolean b = productService.deleteProduct(id);
+       return b;
+    }
 }
