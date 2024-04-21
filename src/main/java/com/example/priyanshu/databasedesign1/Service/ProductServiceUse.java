@@ -15,21 +15,18 @@ public class ProductServiceUse implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> getAllProducts() { // This is done by naman bhalla sir
-        return List.of();
+    public List<Product> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        return products;
     }
 
     @Override
-    public Optional<Product> getProductById(long id) { // This is done by naman bhalla sir
+    public Optional<Product> getProductById(long id) {
          Optional<Product> producto = productRepository.findById(id);
          Product p = producto.get();
          return Optional.of(p);
     }
 
-    @Override
-    public Product replaceProduct(Long is, Product product) {
-        return null;
-    }
 
     @Override
     public Product addProduct(Product product) {
@@ -39,7 +36,7 @@ public class ProductServiceUse implements ProductService {
 
 
     @Override
-    public Product updateProduct(Long id, Product product) {  // This is done by naman bhalla sir
+    public Product updateProduct(Long id, Product product) {
         Optional<Product> producto = productRepository.findById(id);
         if(producto.isEmpty()) {
             throw new RuntimeException();
@@ -60,6 +57,11 @@ public class ProductServiceUse implements ProductService {
 
     @Override
     public boolean deleteProduct(Long id) {
-        return false;
+        if(productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+        }else {
+            throw new RuntimeException();
+        }
     }
 }
