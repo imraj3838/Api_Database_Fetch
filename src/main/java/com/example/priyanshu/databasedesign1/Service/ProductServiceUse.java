@@ -19,11 +19,6 @@ public class ProductServiceUse implements ProductService {
         return List.of();
     }
 
-//    @Override
-//    public Product getProductById(int id) {
-//        return null;
-//    }
-
     @Override
     public Optional<Product> getProductById(long id) { // This is done by naman bhalla sir
          Optional<Product> producto = productRepository.findById(id);
@@ -38,12 +33,29 @@ public class ProductServiceUse implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
-        return null;
+        Product p = productRepository.save(product);
+        return p;
     }
+
 
     @Override
     public Product updateProduct(Long id, Product product) {  // This is done by naman bhalla sir
-        return null;
+        Optional<Product> producto = productRepository.findById(id);
+        if(producto.isEmpty()) {
+            throw new RuntimeException();
+        }
+        Product saveProduct = producto.get();
+
+        if(product.getTitle()!=null){
+            saveProduct.setTitle(product.getTitle());
+        }
+        if(product.getDescription()!=null){
+            saveProduct.setDescription(product.getDescription());
+        }
+        if(product.getPrice()!=null){
+            saveProduct.setPrice(product.getPrice());
+        }
+        return saveProduct;
     }
 
     @Override
